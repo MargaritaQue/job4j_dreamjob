@@ -19,4 +19,3 @@ public class CandidateController {
         return "candidates/list";
     }
 }
-//и передать данные в представление через Model. Не забыть указать аннотации @Controller и @RequestMapping("/candidates")

@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 @Repository
-public class MemoryCandidateRepository implements CandidateRepository{
+public class MemoryCandidateRepository implements CandidateRepository {
 
     private static final MemoryCandidateRepository INSTANCE = new MemoryCandidateRepository();
 

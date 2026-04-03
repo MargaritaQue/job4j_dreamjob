@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<nav th:fragment="navigation(activePage)" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/index}">Dream Job</a>
+
+        <div class="collapse navbar-collapse">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link"
+                   th:href="@{/index}"
+                   th:classappend="${activePage == 'index'} ? ' active' : ''">
+                    Главная
+                </a>
+                <a class="nav-item nav-link"
+                   th:href="@{/vacancies}"
+                   th:classappend="${activePage == 'vacancies'} ? ' active' : ''">
+                    Вакансии
+                </a>
+                <a class="nav-item nav-link"
+                   th:href="@{/candidates}"
+                   th:classappend="${activePage == 'candidates'} ? ' active' : ''">
+                    Кандидаты
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

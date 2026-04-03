@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.dreamjob.model.Vacancy;
-import ru.job4j.dreamjob.service.SimpleVacancyService;
 import ru.job4j.dreamjob.service.VacancyService;
 
 import java.time.LocalDateTime;
@@ -12,9 +11,11 @@ import java.time.LocalDateTime;
 @Controller
 @RequestMapping("/vacancies")
 public class VacancyController {
+    private final VacancyService vacancyService;
 
-    private final VacancyService vacancyService = SimpleVacancyService.getInstance();
-
+    public VacancyController(VacancyService vacancyService) {
+        this.vacancyService = vacancyService;
+    }
     @GetMapping
     public String getAll(Model model) {
         model.addAttribute("vacancies", vacancyService.findAll());

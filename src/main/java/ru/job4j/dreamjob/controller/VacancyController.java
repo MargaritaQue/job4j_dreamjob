@@ -16,6 +16,7 @@ public class VacancyController {
     public VacancyController(VacancyService vacancyService) {
         this.vacancyService = vacancyService;
     }
+
     @GetMapping
     public String getAll(Model model) {
         model.addAttribute("vacancies", vacancyService.findAll());

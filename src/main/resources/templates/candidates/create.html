@@ -2,18 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments/header :: header"></head>
 <body>
-<div th:replace="fragments/navigation :: navigation('vacanciesCreate')"></div>
+<div th:replace="fragments/navigation :: navigation('candidatesCreate')"></div>
 <div class="container">
     <form class="mt-3">
         <div class="mb-3">
-            <label for="title" class="form-label"><b>Название</b></label>
+            <label for="title" class="form-label"><b>ФИО</b></label>
             <input type="text" class="form-control" id="title"
-                   placeholder="Предлагаемая должность, например, Ведущий Java разработчик">
+                   placeholder="Ваше ФИО">
         </div>
         <div class="mb-3">
             <label for="description" class="form-label"><b>Описание</b></label>
             <textarea class="form-control" id="description" rows="25"
-                      placeholder="Опишите требования к кандидату"></textarea>
+                      placeholder="Желаемая должность, какими навыками владеете"></textarea>
         </div>
         <div class="mb-3 row">
             <div class="col-6"></div>

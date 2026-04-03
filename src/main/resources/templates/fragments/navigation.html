@@ -22,8 +22,13 @@
                 </a>
                 <a class="nav-item nav-link"
                    th:href="@{/vacancies/create}"
-                   th:classappend="${activePage == 'create'} ? ' active' : ''">
+                   th:classappend="${activePage == 'vacanciesCreate'} ? ' active' : ''">
                     Создать вакансию
+                </a>
+                <a class="nav-item nav-link"
+                   th:href="@{/candidates/create}"
+                   th:classappend="${activePage == 'candidatesCreate'} ? ' active' : ''">
+                    Создать резюме
                 </a>
             </div>
         </div>

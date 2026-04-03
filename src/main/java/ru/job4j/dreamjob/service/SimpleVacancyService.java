@@ -22,8 +22,7 @@ public class SimpleVacancyService implements VacancyService {
 
     @Override
     public boolean deleteById(int id) {
-        vacancyRepository.deleteById(id);
-        return true;
+        return vacancyRepository.deleteById(id);
     }
 
     @Override

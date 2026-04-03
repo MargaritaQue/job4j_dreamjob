@@ -22,8 +22,7 @@ public class SimpleCandidateService implements CandidateService {
 
     @Override
     public boolean deleteById(int id) {
-        candidateRepository.deleteById(id);
-        return true;
+        return candidateRepository.deleteById(id);
     }
 
     @Override

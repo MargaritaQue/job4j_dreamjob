@@ -18,12 +18,12 @@ public class MemoryCandidateRepository implements CandidateRepository {
     private final Map<Integer, Candidate> candidates = new ConcurrentHashMap<>();
 
     private MemoryCandidateRepository() {
-        save(new Candidate(0, "Костин Матвей Фёдорович", "Кандидат на вакансию Стажер", LocalDateTime.now(), 1));
-        save(new Candidate(0, "Степанов Степан Даниилович", "Кандидат на вакансию Джуниор", LocalDateTime.now(), 1));
-        save(new Candidate(0, "Наумова Ирина Егоровна", "Кандидат на вакансию Джуниор+", LocalDateTime.now(), 1));
-        save(new Candidate(0, "Егоров Алексей Евгеньевич", "Кандидат на вакансию Мидл", LocalDateTime.now(), 1));
-        save(new Candidate(0, "Киселев Антон Эмирович", "Кандидат на вакансию Мидл+", LocalDateTime.now(), 1));
-        save(new Candidate(0, "Ермаков Семён Максимович", "Кандидат на вакансию Синьор", LocalDateTime.now(), 1));
+        save(new Candidate(0, "Костин Матвей Фёдорович", "Кандидат на вакансию Стажер", LocalDateTime.now(), 1, 0));
+        save(new Candidate(0, "Степанов Степан Даниилович", "Кандидат на вакансию Джуниор", LocalDateTime.now(), 1, 0));
+        save(new Candidate(0, "Наумова Ирина Егоровна", "Кандидат на вакансию Джуниор+", LocalDateTime.now(), 1, 0));
+        save(new Candidate(0, "Егоров Алексей Евгеньевич", "Кандидат на вакансию Мидл", LocalDateTime.now(), 1, 0));
+        save(new Candidate(0, "Киселев Антон Эмирович", "Кандидат на вакансию Мидл+", LocalDateTime.now(), 1, 0));
+        save(new Candidate(0, "Ермаков Семён Максимович", "Кандидат на вакансию Синьор", LocalDateTime.now(), 1, 0));
     }
 
     @Override
@@ -43,7 +43,8 @@ public class MemoryCandidateRepository implements CandidateRepository {
     public boolean update(Candidate candidate) {
         return candidates.computeIfPresent(candidate.getId(),
                 (id, oldCandidate) -> new Candidate(oldCandidate.getId(), candidate.getName(),
-                        candidate.getDescription(), oldCandidate.getCreationDate(), candidate.getCityId())) != null;
+                        candidate.getDescription(), oldCandidate.getCreationDate(), candidate.getCityId(),
+                        candidate.getFileId())) != null;
     }
 
     @Override

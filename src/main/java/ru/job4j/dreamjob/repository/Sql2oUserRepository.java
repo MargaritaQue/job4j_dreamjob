@@ -4,8 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
+import org.sql2o.Sql2oException;
 import ru.job4j.dreamjob.model.User;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 @Repository
@@ -33,9 +35,13 @@ public class Sql2oUserRepository implements UserRepository {
             Long generatedId = query.executeUpdate().getKey(Long.class);
             user.setId(generatedId);
             return Optional.of(user);
-        } catch (Exception e) {
-            LOGGER.error("Ошибка при сохранении пользователя", e);
-            return Optional.empty();
+        } catch (Sql2oException e) {
+            if (e.getCause() instanceof SQLException sqlException
+                    && "23505".equals(sqlException.getSQLState())) {
+                LOGGER.error("Пользователь с такой почтой уже существует", e);
+                return Optional.empty();
+            }
+            throw e;
         }
     }
 

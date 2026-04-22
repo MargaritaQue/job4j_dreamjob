@@ -1,8 +1,8 @@
 package ru.job4j.dreamjob.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.ui.Model;
+import jakarta.servlet.http.HttpSession;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,14 +24,7 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String getRegistrationPage(Model model, HttpSession session) {
-        var currentUser = (User) session.getAttribute("user");
-        if (currentUser == null) {
-            currentUser = new User();
-            currentUser.setName("Гость");
-        }
-        model.addAttribute("user", currentUser);
-        model.addAttribute("newUser", new User());
+    public String getRegistrationPage(Model model) {
         return "users/register";
     }
 
@@ -46,13 +39,7 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String getLoginPage(Model model, HttpSession session) {
-        var currentUser = (User) session.getAttribute("user");
-        if (currentUser == null) {
-            currentUser = new User();
-            currentUser.setName("Гость");
-        }
-        model.addAttribute("user", currentUser);
+    public String getLoginPage() {
         return "users/login";
     }
 
@@ -60,7 +47,6 @@ public class UserController {
     public String loginUser(@ModelAttribute User user, Model model, HttpServletRequest request) {
         var userOptional = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if (userOptional.isEmpty()) {
-            model.addAttribute("user", new User(null, null, "Гость", null));
             model.addAttribute("error", "Почта или пароль введены неверно");
             return "users/login";
         }

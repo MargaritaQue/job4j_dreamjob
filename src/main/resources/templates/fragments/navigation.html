@@ -31,6 +31,13 @@
                     Создать резюме
                 </a>
             </div>
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link"
+                   th:href="@{/users/register}"
+                   th:classappend="${activePage == 'usersRegister'} ? ' active' : ''">
+                    Регистрация
+                </a>
+            </div>
         </div>
     </div>
 </nav>
